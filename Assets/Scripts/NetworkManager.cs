@@ -16,6 +16,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks {
     [SerializeField]
     private GameObject[] playerModel;
     [SerializeField]
+    private GameObject zombie1Model;
+    [SerializeField]
+    private GameObject zombie2Model;
+    [SerializeField]
     private GameObject serverWindow;
     [SerializeField]
     private GameObject messageWindow;
@@ -31,9 +35,12 @@ public class NetworkManager : MonoBehaviourPunCallbacks {
     private InputField messagesLog;
 
     private GameObject player;
+    private GameObject zombie1;
+    private GameObject zombie2;
     private Queue<string> messages;
     private const int messageCount = 10;
     private string nickNamePrefKey = "PlayerName";
+    private bool playerSpawned = false;
 
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
@@ -47,6 +54,16 @@ public class NetworkManager : MonoBehaviourPunCallbacks {
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.ConnectUsingSettings();
         connectionText.text = "Connecting to lobby...";
+    }
+
+    private void Update()
+    {
+        if (playerSpawned)
+        {
+            zombie1 = PhotonNetwork.InstantiateRoomObject(zombie1Model.name, spawnPoints[1].position, spawnPoints[1].rotation, 0);
+            zombie2 = PhotonNetwork.InstantiateRoomObject(zombie2Model.name, spawnPoints[2].position, spawnPoints[2].rotation, 0);
+            playerSpawned = false;
+        }
     }
 
     /// <summary>
@@ -131,12 +148,14 @@ public class NetworkManager : MonoBehaviourPunCallbacks {
         messageWindow.SetActive(true);
         sightImage.SetActive(true);
         int playerIndex = Random.Range(0, playerModel.Length);
-        int spawnIndex = Random.Range(0, spawnPoints.Length);
+        int spawnIndex = 0;
         player = PhotonNetwork.Instantiate(playerModel[playerIndex].name, spawnPoints[spawnIndex].position, spawnPoints[spawnIndex].rotation, 0);
         PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
         playerHealth.RespawnEvent += Respawn;
         playerHealth.AddMessageEvent += AddMessage;
         sceneCamera.enabled = false;
+        Game.game.player = player;
+        playerSpawned = true;
         if (spawnTime == 0) {
             AddMessage("Player " + PhotonNetwork.LocalPlayer.NickName + " Joined Game.");
         } else {
