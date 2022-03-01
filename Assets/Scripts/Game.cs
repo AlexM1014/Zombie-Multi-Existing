@@ -13,11 +13,9 @@ public class Game : MonoBehaviour
 
     public List<Zombie> zombies;
 
-    public bool playerSpawn;
-
-    public List<GameObject> barricades1;
-    public List<GameObject> barricades2;
-    public List<GameObject> barricades3;
+    public GameObject barricades1;
+    public GameObject barricades2;
+    public GameObject barricades3;
 
     public GameObject barricade1Trigger;
     public GameObject barricade2Trigger;
