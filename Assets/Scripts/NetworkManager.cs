@@ -39,6 +39,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks {
     private const int messageCount = 10;
     private string nickNamePrefKey = "PlayerName";
     private bool playerSpawned = false;
+    List<GameObject> Zombielist;
 
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
@@ -56,11 +57,23 @@ public class NetworkManager : MonoBehaviourPunCallbacks {
 
     private void Update()
     {
-        if (playerSpawned)
+        if (Zombielist.Count == 0)
         {
-            zombie1 = PhotonNetwork.InstantiateRoomObject(zombie1Model.name, spawnPoints[1].position, spawnPoints[1].rotation, 0);
-            playerSpawned = false;
+            SpawnWave();
         }
+
+        for (int i = Zombielist.Count; i > 0; i++)
+        {
+            if (Zombielist[i] == null)
+            {
+                Zombielist.RemoveAt(i);
+            }
+        }
+    }
+
+    public void SpawnWave()
+    {
+
     }
 
     /// <summary>
