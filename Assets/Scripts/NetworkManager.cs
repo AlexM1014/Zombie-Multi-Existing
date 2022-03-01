@@ -57,23 +57,28 @@ public class NetworkManager : MonoBehaviourPunCallbacks {
 
     private void Update()
     {
-        if (Zombielist.Count == 0)
+        //if (Zombielist.Count == 0)
+        //{
+        //    SpawnWave();
+        //}
+
+        //for (int i = Zombielist.Count; i > 0; i++)
+        //{
+        //    if (Zombielist[i] == null)
+        //    {
+        //        Zombielist.RemoveAt(i);
+        //    }
+        //}
+        if (playerSpawned && Zombielist.Count <= 1)
         {
             SpawnWave();
-        }
-
-        for (int i = Zombielist.Count; i > 0; i++)
-        {
-            if (Zombielist[i] == null)
-            {
-                Zombielist.RemoveAt(i);
-            }
         }
     }
 
     public void SpawnWave()
     {
-
+        zombie1 = PhotonNetwork.InstantiateRoomObject(zombie1Model.name, spawnPoints[1].position, spawnPoints[1].rotation, 0);
+        Zombielist.Add(zombie1);
     }
 
     /// <summary>
