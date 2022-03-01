@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Zombie : MonoBehaviour
 {
+    public NavMeshAgent navMeshAgent;
     
     void Start()
     {
-        
+        navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
     
     void Update()
     {
-        transform.position = Vector3.Lerp(transform.position, Game.game.player.transform.position, Time.deltaTime);
+        navMeshAgent.SetDestination(Game.game.player.transform.position);
     }
 }

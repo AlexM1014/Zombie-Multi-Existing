@@ -18,8 +18,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks {
     [SerializeField]
     private GameObject zombie1Model;
     [SerializeField]
-    private GameObject zombie2Model;
-    [SerializeField]
     private GameObject serverWindow;
     [SerializeField]
     private GameObject messageWindow;
@@ -61,7 +59,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks {
         if (playerSpawned)
         {
             zombie1 = PhotonNetwork.InstantiateRoomObject(zombie1Model.name, spawnPoints[1].position, spawnPoints[1].rotation, 0);
-            zombie2 = PhotonNetwork.InstantiateRoomObject(zombie2Model.name, spawnPoints[2].position, spawnPoints[2].rotation, 0);
             playerSpawned = false;
         }
     }
