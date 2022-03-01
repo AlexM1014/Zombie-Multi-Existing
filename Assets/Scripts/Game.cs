@@ -13,6 +13,15 @@ public class Game : MonoBehaviour
 
     public List<Zombie> zombies;
 
+    public bool playerSpawn;
+
+    public List<GameObject> barricades1;
+    public List<GameObject> barricades2;
+    public List<GameObject> barricades3;
+
+    public GameObject barricade1Trigger;
+    public GameObject barricade2Trigger;
+    public GameObject barricade3Trigger;
 
     private void Start()
     {
@@ -23,4 +32,10 @@ public class Game : MonoBehaviour
     {
         zombies = FindObjectsOfType<Zombie>().ToList();
     }
+
+    public void removeBarricade1()
+    {
+
+    }
+
 }
