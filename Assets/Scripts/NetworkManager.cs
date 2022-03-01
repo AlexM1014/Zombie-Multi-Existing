@@ -40,6 +40,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks {
     private string nickNamePrefKey = "PlayerName";
     private bool playerSpawned = false;
     List<GameObject> Zombielist;
+    private int spawnAmount = 0;
 
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
@@ -57,28 +58,32 @@ public class NetworkManager : MonoBehaviourPunCallbacks {
 
     private void Update()
     {
-        //if (Zombielist.Count == 0)
-        //{
-        //    SpawnWave();
-        //}
-
-        //for (int i = Zombielist.Count; i > 0; i++)
-        //{
-        //    if (Zombielist[i] == null)
-        //    {
-        //        Zombielist.RemoveAt(i);
-        //    }
-        //}
-        if (playerSpawned && Zombielist.Count <= 1)
+        if (Zombielist.Count == 0)
         {
             SpawnWave();
         }
+
+        for (int i = Zombielist.Count; i > 0; i++)
+        {
+            if (Zombielist[i] == null)
+            {
+                Zombielist.RemoveAt(i);
+            }
+        }
+        //if (playerSpawned && Zombielist.Count <= 1)
+        //{
+            //SpawnWave();
+        //}
     }
 
     public void SpawnWave()
     {
-        zombie1 = PhotonNetwork.InstantiateRoomObject(zombie1Model.name, spawnPoints[1].position, spawnPoints[1].rotation, 0);
-        Zombielist.Add(zombie1);
+        for(int i = 0; i <= spawnAmount; i++)
+        {
+            zombie1 = PhotonNetwork.InstantiateRoomObject(zombie1Model.name, spawnPoints[1].position, spawnPoints[1].rotation, 0);
+            Zombielist.Add(zombie1);
+        }
+        spawnAmount += 5;
     }
 
     /// <summary>
