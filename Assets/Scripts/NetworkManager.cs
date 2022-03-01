@@ -39,7 +39,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks {
     private const int messageCount = 10;
     private string nickNamePrefKey = "PlayerName";
     private bool playerSpawned = false;
-    List<GameObject> Zombielist;
+    List<GameObject> Zombielist = new List<GameObject>();
 
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
