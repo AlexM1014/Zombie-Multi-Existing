@@ -21,6 +21,8 @@ public class Game : MonoBehaviour
     public GameObject barricade2Trigger;
     public GameObject barricade3Trigger;
 
+    bool isInBarricadeTrigger = false;
+
     private void Start()
     {
         game = this;
@@ -29,11 +31,6 @@ public class Game : MonoBehaviour
     private void Update()
     {
         zombies = FindObjectsOfType<Zombie>().ToList();
-    }
-
-    public void removeBarricade1()
-    {
-
     }
 
 }
