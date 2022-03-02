@@ -39,8 +39,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks {
     private const int messageCount = 10;
     private string nickNamePrefKey = "PlayerName";
     private bool playerSpawned = false;
-    List<GameObject> Zombielist;
-    private int spawnAmount = 0;
+    List<GameObject> Zombielist = new List<GameObject>();
+    private int spawnAmount = 5;
 
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
@@ -58,16 +58,20 @@ public class NetworkManager : MonoBehaviourPunCallbacks {
 
     private void Update()
     {
-        if (Zombielist.Count == 0)
+        if (playerSpawned)
         {
-            SpawnWave();
-        }
-
-        for (int i = Zombielist.Count; i > 0; i++)
-        {
-            if (Zombielist[i] == null)
+            if (Zombielist.Count == 0)
             {
-                Zombielist.RemoveAt(i);
+                SpawnWave();
+            }
+
+            for (int i = 0; i < Zombielist.Count; i++)
+            {
+                if (Zombielist[i] == null)
+                {
+                    Zombielist.RemoveAt(i);
+                    i = 0;
+                }
             }
         }
         //if (playerSpawned && Zombielist.Count <= 1)
