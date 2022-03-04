@@ -17,6 +17,10 @@ public class Barricade : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         costText.enabled = true;
+        if(Input.GetKeyDown(KeyCode.E) && Game.game.playerScore >= pointCost)
+        {
+            Destroy(this);
+        }
     }
 
     public void OnTriggerExit(Collider other)
