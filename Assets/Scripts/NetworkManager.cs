@@ -45,6 +45,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks {
     private int zombiesSpawned = 0;
     private float timer = 5;
     private bool spawnWave = false;
+    public int WaveNum = 0;
 
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
@@ -68,6 +69,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks {
             if (Zombielist.Count == 0)
             {
                 spawnWave = true;
+                WaveNum += 1;
             }
 
             if (spawnWave)
