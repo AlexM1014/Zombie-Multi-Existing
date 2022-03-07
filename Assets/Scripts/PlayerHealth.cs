@@ -156,4 +156,12 @@ public class PlayerHealth : MonoBehaviourPunCallbacks, IPunObservable {
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "zombieHand")
+        {
+            TakeDamage(10, collision.gameObject.name);
+        }
+    }
+
 }

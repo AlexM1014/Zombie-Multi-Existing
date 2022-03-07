@@ -39,8 +39,12 @@ public class NetworkManager : MonoBehaviourPunCallbacks {
     private const int messageCount = 10;
     private string nickNamePrefKey = "PlayerName";
     private bool playerSpawned = false;
+    private bool setPlayer = false;
     List<GameObject> Zombielist = new List<GameObject>();
     private int spawnAmount = 5;
+    private int zombiesSpawned = 0;
+    private float timer = 5;
+    private bool spawnWave = false;
 
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
@@ -62,7 +66,24 @@ public class NetworkManager : MonoBehaviourPunCallbacks {
         {
             if (Zombielist.Count == 0)
             {
-                SpawnWave();
+                spawnWave = true;
+            }
+
+            if (spawnWave)
+            {
+                do
+                {
+                    timer -= Time.deltaTime;
+                    if (timer < 0)
+                    {
+                        zombie1 = PhotonNetwork.InstantiateRoomObject(zombie1Model.name, spawnPoints[1].position, spawnPoints[1].rotation, 0);
+                        Zombielist.Add(zombie1);
+                        timer = 20;
+                        zombiesSpawned++;
+                    }
+                } while (zombiesSpawned < spawnAmount);
+                spawnAmount += 5;
+                spawnWave = false;
             }
 
             for (int i = 0; i < Zombielist.Count; i++)
@@ -71,9 +92,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks {
                 {
                     Zombielist.RemoveAt(i);
                     i = 0;
+                    zombiesSpawned--;
                 }
             }
         }
+        
         //if (playerSpawned && Zombielist.Count <= 1)
         //{
             //SpawnWave();
@@ -82,12 +105,14 @@ public class NetworkManager : MonoBehaviourPunCallbacks {
 
     public void SpawnWave()
     {
-        for(int i = 0; i <= spawnAmount; i++)
-        {
-            zombie1 = PhotonNetwork.InstantiateRoomObject(zombie1Model.name, spawnPoints[1].position, spawnPoints[1].rotation, 0);
-            Zombielist.Add(zombie1);
-        }
-        spawnAmount += 5;
+
+        //for(int i = 0; i <= spawnAmount; i++)
+        //{
+        //    zombie1 = PhotonNetwork.InstantiateRoomObject(zombie1Model.name, spawnPoints[1].position, spawnPoints[1].rotation, 0);
+        //    Zombielist.Add(zombie1);
+        //}
+
+        
     }
 
     /// <summary>
