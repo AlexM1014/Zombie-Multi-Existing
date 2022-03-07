@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 // TODO: finish score system later, this script is not used now.
 public class PlayerScore : MonoBehaviour {

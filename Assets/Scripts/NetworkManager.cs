@@ -39,6 +39,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks {
     private const int messageCount = 10;
     private string nickNamePrefKey = "PlayerName";
     private bool playerSpawned = false;
+    private bool setPlayer = false;
     List<GameObject> Zombielist = new List<GameObject>();
     private int spawnAmount = 5;
     private int zombiesSpawned = 0;
