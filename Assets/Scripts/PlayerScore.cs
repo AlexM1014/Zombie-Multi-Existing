@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 // TODO: finish score system later, this script is not used now.
 public class PlayerScore : MonoBehaviour {
 
     private int score = 0;
     private int killed = 0;
+
     // private string notification;
 
     public void IncreaseKillCount() {
@@ -36,5 +37,4 @@ public class PlayerScore : MonoBehaviour {
     public void AddScore(int newScore) {
         score += newScore;
     }
-
 }

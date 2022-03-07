@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Game : MonoBehaviour
 {
@@ -13,13 +14,6 @@ public class Game : MonoBehaviour
 
     public List<Zombie> zombies;
 
-    public GameObject barricades1;
-    public GameObject barricades2;
-    public GameObject barricades3;
-
-    public GameObject barricade1Trigger;
-    public GameObject barricade2Trigger;
-    public GameObject barricade3Trigger;
 
     bool isInBarricadeTrigger = false;
 

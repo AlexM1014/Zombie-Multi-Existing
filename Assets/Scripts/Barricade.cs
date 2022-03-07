@@ -5,21 +5,24 @@ using UnityEngine.UI;
 
 public class Barricade : MonoBehaviour
 {
-    public int pointCost;
-
     public Text costText;
 
-    public void Start()
+    public int cost;
+
+    private void Start()
     {
         costText.enabled = false;
     }
 
-    public void OnTriggerEnter(Collider other)
+    public void OnTriggerStay(Collider other)
     {
-        costText.enabled = true;
-        if(Input.GetKeyDown(KeyCode.E) && Game.game.playerScore >= pointCost)
+        if(other.tag == "Player")
         {
-            Destroy(this);
+            costText.enabled = true;
+            if(Input.GetKeyDown(KeyCode.E) && Game.game.playerScore >= cost)
+            {
+                this.enabled = false;
+            }
         }
     }
 
