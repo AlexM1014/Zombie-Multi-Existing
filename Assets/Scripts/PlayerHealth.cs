@@ -156,11 +156,11 @@ public class PlayerHealth : MonoBehaviourPunCallbacks, IPunObservable {
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "zombieHand")
+        if (other.tag == "zombieHand")
         {
-            TakeDamage(10, collision.gameObject.name);
+            TakeDamage(10, other.gameObject.name);
         }
     }
 
