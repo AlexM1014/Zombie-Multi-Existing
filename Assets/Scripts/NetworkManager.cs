@@ -62,6 +62,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks {
 
     private void Update()
     {
+        System.Random rand = new System.Random();
         if (playerSpawned)
         {
             if (Zombielist.Count == 0)
@@ -76,7 +77,20 @@ public class NetworkManager : MonoBehaviourPunCallbacks {
                     timer -= Time.deltaTime;
                     if (timer < 0)
                     {
-                        zombie1 = PhotonNetwork.InstantiateRoomObject(zombie1Model.name, spawnPoints[1].position, spawnPoints[1].rotation, 0);
+                        int randSpawnpoint = -1;
+                        if (Game.game.barricade1Bought)
+                        {
+                            randSpawnpoint = rand.Next(1, 4);
+                        }
+                        else if (Game.game.barricade2Bought)
+                        {
+                            randSpawnpoint = rand.Next(1, 6);
+                        }
+                        else if (Game.game.barricade3Bought)
+                        {
+                            randSpawnpoint = rand.Next(1, 8);
+                        }
+                        zombie1 = PhotonNetwork.InstantiateRoomObject(zombie1Model.name, spawnPoints[randSpawnpoint].position, spawnPoints[randSpawnpoint].rotation, 0);
                         Zombielist.Add(zombie1);
                         timer = 20;
                         zombiesSpawned++;

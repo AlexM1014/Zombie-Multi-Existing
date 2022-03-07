@@ -14,6 +14,10 @@ public class Game : MonoBehaviour
 
     public List<Zombie> zombies;
 
+    public bool barricade1Bought = false;
+    public bool barricade2Bought = false;
+    public bool barricade3Bought = false;
+
 
     bool isInBarricadeTrigger = false;
 
