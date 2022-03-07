@@ -7,6 +7,8 @@ public class Barricade : MonoBehaviour
 {
     public Text costText;
 
+    public GameObject barricade;
+
     public int cost;
 
     private void Start()
@@ -18,10 +20,12 @@ public class Barricade : MonoBehaviour
     {
         if(other.tag == "Player")
         {
+            costText.text = "Press E to remove barrier - Cost: " + cost;
             costText.enabled = true;
             if(Input.GetKeyDown(KeyCode.E) && Game.game.playerScore >= cost)
             {
-                this.enabled = false;
+                barricade.SetActive(false);
+                Game.game.playerScore -= cost;
             }
         }
     }
