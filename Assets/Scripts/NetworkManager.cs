@@ -68,8 +68,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks {
         {
             if (Zombielist.Count == 0)
             {
-                spawnWave = true;
                 WaveNum += 1;
+                spawnWave = true;
+                
             }
 
             if (spawnWave)
