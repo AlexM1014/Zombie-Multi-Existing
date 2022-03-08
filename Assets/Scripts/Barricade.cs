@@ -27,6 +27,18 @@ public class Barricade : MonoBehaviour
                 barricade.SetActive(false);
                 Game.game.playerScore -= cost;
             }
+            if(tag == "Barricade1")
+            {
+                Game.game.barricade1Bought = true;
+            }
+            if (tag == "Barricade2")
+            {
+                Game.game.barricade2Bought = true;
+            }
+            if (tag == "Barricade3")
+            {
+                Game.game.barricade3Bought = true;
+            }
         }
     }
 

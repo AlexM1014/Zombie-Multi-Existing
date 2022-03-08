@@ -80,18 +80,18 @@ public class NetworkManager : MonoBehaviourPunCallbacks {
                     timer -= Time.deltaTime;
                     if (timer < 0)
                     {
-                        int randSpawnpoint = -1;
+                        int randSpawnpoint = rand.Next(1, 3);
                         if (Game.game.barricade1Bought)
                         {
-                            randSpawnpoint = rand.Next(1, 4);
+                            randSpawnpoint = rand.Next(1, 5);
                         }
                         else if (Game.game.barricade2Bought)
                         {
-                            randSpawnpoint = rand.Next(1, 6);
+                            randSpawnpoint = rand.Next(1, 7);
                         }
                         else if (Game.game.barricade3Bought)
                         {
-                            randSpawnpoint = rand.Next(1, 8);
+                            randSpawnpoint = rand.Next(1, 9);
                         }
                         zombie1 = PhotonNetwork.InstantiateRoomObject(zombie1Model.name, spawnPoints[randSpawnpoint].position, spawnPoints[randSpawnpoint].rotation, 0);
                         Zombielist.Add(zombie1);
