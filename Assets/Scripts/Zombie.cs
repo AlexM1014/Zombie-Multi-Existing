@@ -8,6 +8,7 @@ public class Zombie : MonoBehaviour
     NavMeshAgent navMeshAgent;
     Animator animator;
     Rigidbody rb;
+    float distance;
 
     void Start()
     {
@@ -19,6 +20,9 @@ public class Zombie : MonoBehaviour
     
     void Update()
     {
+        distance = Vector3.Distance(transform.position, Game.game.player.transform.position);
+        Debug.Log(distance);
+        animator.SetFloat("Distance", distance);
         navMeshAgent.SetDestination(Game.game.player.transform.position);
         animator.SetFloat("Speed", rb.velocity.magnitude);
     }
