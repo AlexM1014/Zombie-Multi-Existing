@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ZombieHealth : MonoBehaviour
 {
-    private int maxHealth = 10;
+    private int maxHealth = 30;
     private int currentHealth;
     private bool isDead = false;
 
